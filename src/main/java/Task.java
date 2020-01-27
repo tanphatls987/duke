@@ -28,4 +28,6 @@ public abstract class Task {
     public String getStatus() {
         return name + "[" + getDoneIcon() + "]";
     }
+
+    public abstract String getString();
 }
