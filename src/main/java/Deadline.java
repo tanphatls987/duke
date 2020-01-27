@@ -1,20 +1,24 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
-    private String deadlineTime;
+    private LocalDateTime deadlineTime;
 
 
-    void setDeadlineTime(String deadlineTime) {
+    void setDeadlineTime(LocalDateTime deadlineTime) {
         this.deadlineTime = deadlineTime;
     }
-    String getDeadlineTime() {
+    LocalDateTime getDeadlineTime() {
         return this.deadlineTime;
     }
     public Deadline(String name) {
         super(name);
-        setDeadlineTime("unknown");
+        setDeadlineTime(LocalDateTime.MIN);
     }
     public Deadline(String name, String deadlineTime) {
         super(name);
-        setDeadlineTime(deadlineTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
+        setDeadlineTime(LocalDateTime.parse(deadlineTime, formatter));
     }
 
     @Override

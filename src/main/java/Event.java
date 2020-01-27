@@ -1,11 +1,14 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
-    private String time;
+    private LocalDateTime time;
     public Event(String name, String time) {
         super(name);
-        this.time = time;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
+        this.time = LocalDateTime.parse(time, formatter);
     }
-    public String getTime() {
-
+    public LocalDateTime getTime() {
         return this.time;
     }
     @Override
