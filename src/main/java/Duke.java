@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -39,7 +43,7 @@ public class Duke {
     private static void deleteTask(ArrayList<Task> tasks, int pos) {
         Task selectTask = tasks.remove(pos - 1);
         selectTask.setDone(true);
-        System.out.printf("Set as done: %s\n", selectTask.getStatus());
+        System.out.printf("Erase: %s\n", selectTask.getStatus());
     }
     private static void addToDo(ArrayList<Task> tasks, String name) throws Exception {
         if (name.isEmpty()) {
@@ -95,15 +99,58 @@ public class Duke {
 
 
     }
+
+
+    public static void saveTask(ArrayList<Task> tasks) {
+        String currentDirectory = System.getProperty("user.dir");
+        java.nio.file.Path saveFile = java.nio.file.Paths.get(currentDirectory, "data", "tasks.txt");
+
+        boolean fileExists = java.nio.file.Files.exists(saveFile);
+        if (fileExists) {
+            try (BufferedWriter writer = Files.newBufferedWriter(saveFile)) {
+                writer.write(String.valueOf(tasks.size()));
+                writer.newLine();
+                for(Task task : tasks) {
+                    writer.write(task.getString());
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                System.out.println("Unable to save task to specified file");
+                System.err.format("IOException: %s\n", e);
+            }
+        }
+    }
+    public static ArrayList<Task> loadTask() {
+        String currentDirectory = System.getProperty("user.dir");
+        java.nio.file.Path saveFile = java.nio.file.Paths.get(currentDirectory, "data", "tasks.txt");
+        System.out.println(saveFile.toString());
+        boolean fileExists = java.nio.file.Files.exists(saveFile);
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        TaskFactory taskFactory = new TaskFactory();
+        if (fileExists) {
+            try (BufferedReader reader = Files.newBufferedReader(saveFile)) {
+                int numberOfTasks = Integer.parseInt(reader.readLine());
+                for(int i = 1; i <= numberOfTasks; i++) {
+                    tasks.add(taskFactory.readTask(reader));
+                }
+            } catch (IOException e) {
+                System.out.println("Unable to read task from specified file");
+                System.err.format("IOException: %s\n", e);
+            } catch (Exception e) {
+                System.out.println("Unable to read task from specified file");
+            }
+        }
+        return tasks;
+    }
     public static void main(String[] args) {
         printLogo();
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        ArrayList<Task> tasks = loadTask();
         while (true) {
             String cmd = scanner.nextLine();
             if (cmd.equals("bye")) {
                 byeMessage();
-                return;
+                break;
             } else if (cmd.equals("list")){
                 printTaskList(tasks);
             } else if (cmd.startsWith("done")) {
@@ -124,5 +171,6 @@ public class Duke {
                 addTask(tasks, cmd);
             }
         }
+        saveTask(tasks);
     }
 }

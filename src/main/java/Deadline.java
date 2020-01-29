@@ -1,11 +1,14 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class Deadline extends Task{
     private String deadlineTime;
 
-
-    void setDeadlineTime(String deadlineTime) {
+    public void setDeadlineTime(String deadlineTime) {
         this.deadlineTime = deadlineTime;
     }
-    String getDeadlineTime() {
+    public String getDeadlineTime() {
         return this.deadlineTime;
     }
     public Deadline(String name) {
@@ -24,5 +27,21 @@ public class Deadline extends Task{
     @Override
     public String getType() {
         return "D";
+    }
+
+
+    @Override
+    public String getString() {
+        return "{\n" +
+                "Deadline" + "\n" +
+                getName() + "\n" +
+                getDeadlineTime() + "\n" +
+                "}";
+    }
+
+    public static Deadline readBuffer(BufferedReader reader) throws IOException{
+        String deadlineName = reader.readLine();
+        String deadlineTime = reader.readLine();
+        return new Deadline(deadlineName, deadlineTime);
     }
 }
