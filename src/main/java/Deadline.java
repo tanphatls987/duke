@@ -1,23 +1,26 @@
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task{
-    private String deadlineTime;
+    private LocalDateTime deadlineTime;
 
-    public void setDeadlineTime(String deadlineTime) {
+    void setDeadlineTime(LocalDateTime deadlineTime) {
         this.deadlineTime = deadlineTime;
     }
-    public String getDeadlineTime() {
+    LocalDateTime getDeadlineTime() {
         return this.deadlineTime;
     }
     public Deadline(String name) {
         super(name);
-        setDeadlineTime("unknown");
+        setDeadlineTime(LocalDateTime.MIN);
     }
     public Deadline(String name, String deadlineTime) {
         super(name);
-        setDeadlineTime(deadlineTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
+        setDeadlineTime(LocalDateTime.parse(deadlineTime, formatter));
     }
 
     @Override
@@ -30,12 +33,16 @@ public class Deadline extends Task{
     }
 
 
+    private DateTimeFormatter getDateTimeFormatter() {
+        return DateTimeFormatter.ofPattern("yy-M-d H:mm");
+    }
     @Override
     public String getString() {
+        DateTimeFormatter formatter = getDateTimeFormatter();
         return "{\n" +
                 "Deadline" + "\n" +
                 getName() + "\n" +
-                getDeadlineTime() + "\n" +
+                getDeadlineTime().format(formatter) + "\n" +
                 "}";
     }
 
