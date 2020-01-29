@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task{
     private LocalDateTime deadlineTime;
 
-    void setDeadlineTime(LocalDateTime deadlineTime) {
+    public void setDeadlineTime(LocalDateTime deadlineTime) {
         this.deadlineTime = deadlineTime;
     }
-    LocalDateTime getDeadlineTime() {
+    public LocalDateTime getDeadlineTime() {
         return this.deadlineTime;
     }
     public Deadline(String name) {
@@ -22,7 +22,13 @@ public class Deadline extends Task{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
         setDeadlineTime(LocalDateTime.parse(deadlineTime, formatter));
     }
-
+    public Deadline(String name, LocalDateTime time) {
+        super(name);
+        this.deadlineTime = time;
+    }
+    public LocalDateTime getTime() {
+        return this.deadlineTime;
+    }
     @Override
     public String getDisplayName() {
         return getName() + "(by: " + getDeadlineTime() + ")";

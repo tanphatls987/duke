@@ -11,6 +11,10 @@ public class Event extends Task{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
         this.time = LocalDateTime.parse(time, formatter);
     }
+    public Event(String name, LocalDateTime time) {
+        super(name);
+        this.time = time;
+    }
     public LocalDateTime getTime() {
         return this.time;
     }
