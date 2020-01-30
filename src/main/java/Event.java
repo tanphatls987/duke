@@ -40,6 +40,13 @@ public class Event extends Task{
                 hasDone() + "\n" +
                 "}";
     }
+
+    /**
+     * Create an event task from buffer
+     * @param reader File buffer to read from
+     * @return an event
+     * @throws IOException
+     */
     public static Event readBuffer(BufferedReader reader) throws IOException {
         String eventName = reader.readLine();
         String eventTime = reader.readLine();

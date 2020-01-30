@@ -30,6 +30,13 @@ public class Parser {
         }
         throw new InputMismatchException("Unknown command");
     }
+
+    /**
+     * Parse a given string to a command. Will throw exception if the command is unknown
+     * @param input
+     * @return A command
+     * @throws Exception
+     */
     public Command parse(String input) throws Exception {
         if (input.equals("bye")) {
             return new CommandBye();

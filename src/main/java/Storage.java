@@ -18,6 +18,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Load tasks from given file
+     * @return an array of task that store in the file
+     * @throws IOException
+     */
     public ArrayList<Task> loadFile() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         TaskFactory taskFactory = new TaskFactory();
@@ -31,6 +36,12 @@ public class Storage {
         reader.close();
         return tasks;
     }
+
+    /**
+     * Store an array of tasks to the file
+     * @param tasks
+     * @throws IOException
+     */
     public void storeFile(ArrayList<Task> tasks) throws IOException {
         openFile();
         BufferedWriter writer = Files.newBufferedWriter(file);

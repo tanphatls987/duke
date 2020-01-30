@@ -53,6 +53,12 @@ public class Deadline extends Task{
                 "}";
     }
 
+    /**
+     * Create a deadline task
+     * @param reader Buffer to read from
+     * @return A deadline task
+     * @throws IOException
+     */
     public static Deadline readBuffer(BufferedReader reader) throws IOException{
         String deadlineName = reader.readLine();
         String deadlineTime = reader.readLine();
