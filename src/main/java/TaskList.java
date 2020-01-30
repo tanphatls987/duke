@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Wrapper class for tasks list.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
