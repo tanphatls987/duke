@@ -18,7 +18,6 @@ public class Parser {
             if (token.length != 2) {
                 throw new InputMismatchException("Wrong format. Expected deadline <name>/<yy-M-d H:mm>.");
             }
-            System.out.println(token[1]);
             return new CommandAddDeadline(token[0], LocalDateTime.parse(token[1].strip(), formatter));
         }
         if (cmd.startsWith("event")) {
@@ -27,7 +26,6 @@ public class Parser {
             if (token.length != 2) {
                 throw new InputMismatchException("Wrong format. Expected event <name>/<yy-M-d H:mm>.");
             }
-            System.out.println(token[1]);
             return new CommandAddEvent(token[0], LocalDateTime.parse(token[1].strip(), formatter));
         }
         throw new InputMismatchException("Unknown command");

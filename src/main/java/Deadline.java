@@ -17,8 +17,8 @@ public class Deadline extends Task{
         super(name);
         setDeadlineTime(LocalDateTime.MIN);
     }
-    public Deadline(String name, String deadlineTime) {
-        super(name);
+    public Deadline(String name, String deadlineTime, Boolean isDone) {
+        super(name, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
         setDeadlineTime(LocalDateTime.parse(deadlineTime, formatter));
     }
@@ -49,12 +49,14 @@ public class Deadline extends Task{
                 "Deadline" + "\n" +
                 getName() + "\n" +
                 getDeadlineTime().format(formatter) + "\n" +
+                hasDone() + "\n" +
                 "}";
     }
 
     public static Deadline readBuffer(BufferedReader reader) throws IOException{
         String deadlineName = reader.readLine();
         String deadlineTime = reader.readLine();
-        return new Deadline(deadlineName, deadlineTime);
+        String isDone = reader.readLine();
+        return new Deadline(deadlineName, deadlineTime, Boolean.valueOf(isDone));
     }
 }

@@ -6,6 +6,10 @@ public abstract class Task {
         this.name = name;
         this.isDone = false;
     }
+    public Task(String name, boolean isDone) {
+        this.name = name;
+        this.isDone = isDone;
+    }
 
     public void setName(String name) {
         this.name = name;

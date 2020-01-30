@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
     private LocalDateTime time;
-    public Event(String name, String time) {
-        super(name);
+    public Event(String name, String time, boolean isDone) {
+        super(name, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-M-d H:mm");
         this.time = LocalDateTime.parse(time, formatter);
     }
@@ -37,11 +37,13 @@ public class Event extends Task{
                 "Event\n" +
                 getName() + "\n" +
                 getTime().format(formatter) + "\n" +
+                hasDone() + "\n" +
                 "}";
     }
     public static Event readBuffer(BufferedReader reader) throws IOException {
         String eventName = reader.readLine();
         String eventTime = reader.readLine();
-        return new Event(eventName, eventTime);
+        String isDone = reader.readLine();
+        return new Event(eventName, eventTime, Boolean.valueOf(isDone));
     }
 }

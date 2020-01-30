@@ -6,6 +6,9 @@ public class ToDo extends Task{
     public ToDo(String name) {
         super(name);
     }
+    public ToDo(String name, boolean isDone) {
+        super(name, isDone);
+    }
     @Override
     public String getDisplayName() {
         return getName();
@@ -18,10 +21,13 @@ public class ToDo extends Task{
         return "{\n" +
                 "ToDo\n" +
                 getName() + "\n" +
+                hasDone() + "\n" +
                 "}";
     }
 
     public static ToDo readBuffer(BufferedReader reader) throws IOException {
-        return new ToDo(reader.readLine());
+        String name = reader.readLine();
+        String isDone = reader.readLine();
+        return new ToDo(name, Boolean.valueOf(isDone));
     }
 }
