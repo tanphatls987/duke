@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class UI {
     private Scanner scanner;
+
     public UI() {
         scanner = new Scanner(System.in);
     }
@@ -9,9 +10,11 @@ public class UI {
     public String readCommand() {
         return scanner.nextLine();
     }
+
     public void showMessage(String message) {
         System.out.println(message);
     }
+
     public void displayError(Exception e) {
         System.out.println(e.getMessage());
     }
@@ -24,6 +27,7 @@ public class UI {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         showMessage("Hello from\n" + logo);
     }
+
     public void showEndMessage() {
         showMessage("Bye");
     }

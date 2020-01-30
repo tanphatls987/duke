@@ -54,6 +54,7 @@ public class Duke {
             ui.showMessage(e.getMessage());
         }
     }
+
     public static void main(String[] args) {
         new Duke().run();
     }
