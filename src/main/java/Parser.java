@@ -45,6 +45,10 @@ public class Parser {
         if (input.equals("list")) {
             return new CommandList();
         }
+        if (input.startsWith("find")) {
+            input = input.substring("find".length()).strip();
+            return new CommandFind(input);
+        }
         if (input.startsWith("done")) {
             String[] token = input.split(" ");
 
