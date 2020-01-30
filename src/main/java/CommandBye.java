@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class CommandBye extends Command{
+public class CommandBye extends Command {
 
     @Override
     public void run(TaskList tasks, Storage storage, UI ui) {
@@ -11,6 +11,7 @@ public class CommandBye extends Command{
             ui.displayError(e);
         }
     }
+
     @Override
     public boolean isExit() {
         return true;

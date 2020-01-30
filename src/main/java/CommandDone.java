@@ -1,6 +1,7 @@
 public class CommandDone extends Command {
     private int taskNumber;
-    public CommandDone (int taskNumber) {
+
+    public CommandDone(int taskNumber) {
         this.taskNumber = taskNumber - 1;
     }
 

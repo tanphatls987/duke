@@ -37,11 +37,12 @@ public class Parser {
      * @return A command
      * @throws Exception
      */
+
     public Command parse(String input) throws Exception {
         if (input.equals("bye")) {
             return new CommandBye();
         }
-        if (input.equals("list")){
+        if (input.equals("list")) {
             return new CommandList();
         }
         if (input.startsWith("done")) {

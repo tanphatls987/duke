@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Storage {
     private Path file;
+
     public Storage(Path file) {
         this.file = file;
     }
@@ -19,10 +20,11 @@ public class Storage {
     }
 
     /**
-     * Load tasks from given file
+     * Load tasks from given file.
      * @return an array of task that store in the file
-     * @throws IOException
+     * @throws IOException if file is unreadable
      */
+
     public ArrayList<Task> loadFile() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         TaskFactory taskFactory = new TaskFactory();
@@ -30,7 +32,7 @@ public class Storage {
         openFile();
         BufferedReader reader = Files.newBufferedReader(file);
         int numberOfTasks = Integer.parseInt(reader.readLine());
-        for(int i = 1; i <= numberOfTasks; i++) {
+        for (int i = 1; i <= numberOfTasks; i++) {
             tasks.add(taskFactory.readTask(reader));
         }
         reader.close();
@@ -38,16 +40,17 @@ public class Storage {
     }
 
     /**
-     * Store an array of tasks to the file
-     * @param tasks
-     * @throws IOException
+     * Store an array of tasks to the file.
+     * @param tasks the array of tasks
+     * @throws IOException if can't write to the file
      */
+
     public void storeFile(ArrayList<Task> tasks) throws IOException {
         openFile();
         BufferedWriter writer = Files.newBufferedWriter(file);
         writer.write(String.valueOf(tasks.size()));
         writer.newLine();
-        for(Task task : tasks) {
+        for (Task task : tasks) {
             writer.write(task.getString());
             writer.newLine();
         }
