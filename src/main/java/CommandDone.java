@@ -6,11 +6,11 @@ public class CommandDone extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, Storage storage, UI ui) {
+    public String run(TaskList tasks, Storage storage, UI ui) {
         Task selectTask = tasks.get(taskNumber);
         selectTask.setDone(true);
         String message = "Mark as done: " + selectTask.getDisplayName();
-        ui.showMessage(message);
+        return message;
     }
 
     @Override

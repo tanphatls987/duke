@@ -7,6 +7,22 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import static java.lang.Integer.parseInt;
 
@@ -58,4 +74,17 @@ public class Duke {
     public static void main(String[] args) {
         new Duke().run();
     }
+    public String getResponse(String input) {
+        try {
+            Parser parser = new Parser();
+            String fullCommand = input;
+            Command c = parser.parse(fullCommand);
+            return c.run(tasks, storage, ui);
+        } catch (Exception e) {
+            return "Unknown command";
+        }
+    }
+
+
+
 }

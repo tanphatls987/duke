@@ -6,11 +6,11 @@ public class CommandAddToDo extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, Storage storage, UI ui) {
+    public String run(TaskList tasks, Storage storage, UI ui) {
         ToDo newToDo = new ToDo(name);
         String message = "Add new todo: " + newToDo.getName();
-        ui.showMessage(message);
         tasks.add(newToDo);
+        return message;
     }
 
     @Override
