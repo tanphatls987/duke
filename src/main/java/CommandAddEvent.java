@@ -11,11 +11,12 @@ public class CommandAddEvent extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, Storage storage, UI ui) {
+    public String run(TaskList tasks, Storage storage, UI ui) {
         Event newEvent = new Event(eventName, eventTime);
         String message = "Add new event: " + newEvent.getName() + " at " + newEvent.getTime();
-        ui.showMessage(message);
         tasks.add(newEvent);
+
+        return message;
     }
 
     @Override

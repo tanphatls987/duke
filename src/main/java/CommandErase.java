@@ -6,13 +6,13 @@ public class CommandErase extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, Storage storage, UI ui) {
+    public String run(TaskList tasks, Storage storage, UI ui) {
         Task selectTask = tasks.get(position);
         tasks.erase(position);
 
         String message = "Erase task: "
                 + selectTask.getStatus();
-        ui.showMessage(message);
+        return message;
     }
 
     @Override

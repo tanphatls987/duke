@@ -11,12 +11,12 @@ public class CommandAddDeadline extends Command {
 
 
     @Override
-    public void run(TaskList tasks, Storage storage, UI ui) {
+    public String run(TaskList tasks, Storage storage, UI ui) {
         Deadline newDeadline = new Deadline(deadlineName, deadlineTime);
         String message = "Add new deadline: " + newDeadline.getName() + " at " + newDeadline.getTime();
-        ui.showMessage(message);
 
         tasks.add(newDeadline);
+        return message;
     }
 
     @Override

@@ -6,7 +6,7 @@ public abstract class Command {
      * @param ui Show interaction
      */
 
-    public abstract void run(TaskList tasks, Storage storage, UI ui);
+    public abstract String run(TaskList tasks, Storage storage, UI ui);
 
     /**
      * Indicate end command.
