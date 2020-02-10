@@ -45,6 +45,9 @@ public class Parser {
         if (input.equals("list")) {
             return new CommandList();
         }
+        if (input.equals("sort")) {
+            return new CommandSort();
+        }
         if (input.startsWith("find")) {
             input = input.substring("find".length()).strip();
             return new CommandFind(input);

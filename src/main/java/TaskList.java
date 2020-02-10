@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.function.BinaryOperator;
 
 /**
  * Wrapper class for tasks list.
@@ -36,5 +38,9 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public void sort(Comparator<Task> f) {
+        tasks.sort(f);
     }
 }

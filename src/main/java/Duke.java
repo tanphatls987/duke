@@ -81,7 +81,7 @@ public class Duke {
             Command c = parser.parse(fullCommand);
             return c.run(tasks, storage, ui);
         } catch (Exception e) {
-            return "Unknown command";
+            return e.getMessage();
         }
     }
 
