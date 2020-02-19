@@ -5,6 +5,11 @@ import java.util.InputMismatchException;
 import static java.lang.Integer.parseInt;
 
 public class Parser {
+    /**
+     * Parse command related to task.
+     * @param cmd
+     * @return An add task command
+     */
     private Command parseTask(String cmd) {
         if (cmd.startsWith("todo")) {
             cmd = cmd.substring("todo".length()).strip();
@@ -39,9 +44,6 @@ public class Parser {
      */
 
     public Command parse(String input) throws Exception {
-        if (input.equals("bye")) {
-            return new CommandBye();
-        }
         if (input.equals("list")) {
             return new CommandList();
         }
