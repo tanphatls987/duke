@@ -36,7 +36,7 @@ Example of usage:
 `list`
 ### `sort` - Sort task list by the task name.
 Example of usage:
-`help`
+`sort`
 
 
 <img src = "Ui.png">
